@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /       # Copia todo desde el artefacto de CodeBuild
+    destination: /home/ec2-user/app  # Ruta en la EC2 donde se despliega
+
+hooks:
+  AfterInstall:
+    - location: scripts/start.sh  # Ejecuta este script después de copiar los archivos
+      timeout: 60
+      runas: ec2-user
